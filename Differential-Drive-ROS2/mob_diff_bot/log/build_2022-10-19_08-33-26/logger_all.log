@@ -1,0 +1,103 @@
+[0.698s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.699s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffa794f100>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=True, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffa794f100>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffffa794f580>)
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.833s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.834s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.834s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.835s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.836s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.837s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot'
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.839s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.840s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.841s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.841s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.842s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.842s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.843s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.843s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.943s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_cmake' and name 'mob_diff_bot'
+[0.944s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.944s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.945s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.945s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.946s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.133s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.133s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.153s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/ubuntu/ros2_ws/ydlidar_ros2_ws/install
+[1.159s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 16 installed packages in /home/ubuntu/ros2_ws/install
+[1.174s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 344 installed packages in /opt/ros/foxy
+[1.183s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.634s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'cmake_args' from command line to 'None'
+[1.634s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'cmake_target' from command line to 'None'
+[1.634s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.634s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'cmake_clean_cache' from command line to 'False'
+[1.635s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'cmake_clean_first' from command line to 'False'
+[1.635s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'cmake_force_configure' from command line to 'False'
+[1.635s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'ament_cmake_args' from command line to 'None'
+[1.635s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'catkin_cmake_args' from command line to 'None'
+[1.635s] Level 5:colcon.colcon_core.verb:set package 'mob_diff_bot' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.635s] DEBUG:colcon.colcon_core.verb:Building package 'mob_diff_bot' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot', 'merge_install': False, 'path': '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot', 'symlink_install': True, 'test_result_base': None}
+[1.638s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.654s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.655s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot' with build type 'ament_cmake'
+[1.656s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot'
+[1.680s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.681s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.682s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.762s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --build /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot -- -j4 -l4
+[4.322s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --build /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot -- -j4 -l4
+[4.489s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --install /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot
+[4.917s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mob_diff_bot)
+[4.920s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --install /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot
+[4.946s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot' for CMake module files
+[4.949s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot' for CMake config files
+[4.952s] Level 1:colcon.colcon_core.shell:create_environment_hook('mob_diff_bot', 'cmake_prefix_path')
+[4.957s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/hook/cmake_prefix_path.ps1'
+[4.961s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/hook/cmake_prefix_path.dsv'
+[4.964s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/hook/cmake_prefix_path.sh'
+[4.968s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/bin'
+[4.969s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/lib/pkgconfig/mob_diff_bot.pc'
+[4.970s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/lib/python3.8/site-packages'
+[4.970s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/bin'
+[4.976s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.ps1'
+[4.980s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.dsv'
+[4.983s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.sh'
+[4.986s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.bash'
+[4.990s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.zsh'
+[4.996s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/colcon-core/packages/mob_diff_bot)
+[5.120s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(mob_diff_bot)
+[5.129s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot' for CMake module files
+[5.132s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot' for CMake config files
+[5.135s] Level 1:colcon.colcon_core.shell:create_environment_hook('mob_diff_bot', 'cmake_prefix_path')
+[5.141s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/hook/cmake_prefix_path.ps1'
+[5.143s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/hook/cmake_prefix_path.dsv'
+[5.144s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/hook/cmake_prefix_path.sh'
+[5.147s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/bin'
+[5.147s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/lib/pkgconfig/mob_diff_bot.pc'
+[5.148s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/lib/python3.8/site-packages'
+[5.149s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/bin'
+[5.154s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.ps1'
+[5.157s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.dsv'
+[5.159s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.sh'
+[5.161s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.bash'
+[5.163s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.zsh'
+[5.165s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/colcon-core/packages/mob_diff_bot)
+[5.167s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[5.168s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[5.168s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[5.169s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[5.203s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[5.204s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[5.204s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[5.277s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[5.284s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/local_setup.ps1'
+[5.289s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/_local_setup_util_ps1.py'
+[5.323s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/setup.ps1'
+[5.346s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/local_setup.sh'
+[5.350s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/_local_setup_util_sh.py'
+[5.360s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/setup.sh'
+[5.371s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/local_setup.bash'
+[5.374s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/setup.bash'
+[5.385s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/local_setup.zsh'
+[5.390s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/setup.zsh'

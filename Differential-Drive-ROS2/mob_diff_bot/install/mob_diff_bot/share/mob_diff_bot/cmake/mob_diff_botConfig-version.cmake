@@ -1,0 +1,1 @@
+/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot/ament_cmake_core/mob_diff_botConfig-version.cmake

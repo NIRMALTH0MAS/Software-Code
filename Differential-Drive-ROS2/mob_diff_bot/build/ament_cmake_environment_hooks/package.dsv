@@ -1,0 +1,4 @@
+source;share/mob_diff_bot/local_setup.bash
+source;share/mob_diff_bot/local_setup.dsv
+source;share/mob_diff_bot/local_setup.sh
+source;share/mob_diff_bot/local_setup.zsh

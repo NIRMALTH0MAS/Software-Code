@@ -1,0 +1,481 @@
+141  source ~/.bashrc 
+  142  gedit ~/.bash
+  143  gedit ~/.bashrc 
+  144  cd
+  145  source ~/.bashrc 
+  146  source ~/ros2_ws/install/setup.bash 
+  147  gedit ~/.bashrc 
+  148  source ~/.bashrc 
+  149  printenv | grep -i ROS
+  150  cd ~/ros2_ws/ydlidar_ros2_ws/
+  151  colcon build --symlink-install
+  152  ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py 
+  153  ros2 run ydlidar_ros2_driver ydlidar_ros2_driver_client or ros2 topic echo /scan
+  154  ls
+  155  cd Desktop/
+  156  gegit notes.txt
+  157  gedit notes.txt
+  158  cd
+  159  pip install gpiozero
+  160  pip install Encoder
+  161  sudo nautilus
+  162  sudo python3 encoder.py 
+  163  sudo python3 encoder.py 
+  164  cd
+  165  sudo pip install RPi.GPIO
+  166  sudo pip install gpiozero
+  167  sudo pip install Encoder
+  168  sudo python3 encoder.py 
+  169  sudo pip3 install giozero
+  170  pip install gpiozero
+  171  pip3 install gpiozero
+  172  sudo pip3 install giozero
+  173  gazebo
+  174  mkdir -p ~/.gazebo/models/mobile_warehouse_robot
+  175  gedit ~/.gazebo/models/mobile_warehouse_robot/model.config
+  176  pwd
+  177  cd ~/.gazebo/
+  178  pwd
+  179  cd ~/.gazebo/models
+  180  wget -q -R *index.html*,*.tar.gz --no-parent -r -x -nH http://models.gazebosim.org/warehouse_robot/
+  181  wget -q -R *index.html*,*.tar.gz --no-parent -r -x -nH http://models.gazebosim.org/h
+  182  wget -q -R *index.html*,*.tar.gz --no-parent -r -x -nH http://models.gazebosim.org/hokuyo/
+  183  gedit ~/.gazebo/models/mobile_warehouse_robot/model.sdf
+  184  gazebo
+  185  sudo raspi-config 
+  186  sudo dpkg -i code-insiders_1.71.0-1661786771_arm64.deb 
+  187  sudo echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list
+  188  sudo apt-get update 
+  189  sudo apt-get install raspi-config
+  190  wget https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20200601_all.deb -P /tmp
+  191  sudo apt-get install libnewt0.52 whiptail parted triggerhappy lua5.1 alsa-utils -y
+  192  sudo apt-get install -fy
+  193  sudo dpkg -i /tmp/raspi-config_20200601_all.deb
+  194  snap vscode classic
+  195  sudo apt install snap
+  196  sudo snap install code --classic
+  197  sudo apt install terminator
+  198  terminator 
+  199  sudo raspi-config
+  200  git clone https://github.com/joshnewans/articubot_one.git
+  201  ros2 node dlist
+  202  ros2 node list
+  203  ros2 node info /teleop_twist_keyboard 
+  204  clear
+  205  ros2 node info /teleop_twist_keyboard 
+  206  ros2 echo message /teleop_twist_keybord
+  207  ros2 echo msg twist
+  208  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  209  ros2 topic echo /cmd_vel 
+  210  cd ~/ros2_ws/
+  211  cd src/
+  212  colcon build --symlink install
+  213  colcon build --symlink-install
+  214  clear
+  215  source /opt/ros/foxy/setup.bash 
+  216  source ~/ros2_ws/install/setup.bash 
+  217  cd
+  218  sudo apt install ros-foxy-xacro ros-foxy-joint-state-publisher*
+  219  sudo apt install ros-foxy-xacro ros-foxy-control*
+  220  sudo apt install ros-foxy-xacro ros-foxy-controller*
+  221  colcon build --symlink-install
+  222  source ~/ros2_ws/install/setup.bash 
+  223  ros2 launch acr_diff
+  224  source ~/ros2_ws/install/setup.bash 
+  225  ros2 launch acr_diff launch_sim.launch
+  226  colcon build --symlink-install
+  227  source ~/ros2_ws/install/setup.bash 
+  228  ros2 launch acr_diff launch_sim.launch
+  229  ros2 launch acr_diff launch_sim.launch.py
+  230  clear
+  231  ros2 launch acr_diff launch_sim.launch.py
+  232  clear
+  233  colcon build --symlink-install
+  234  source ~/ros2_ws/install/setup.bash 
+  235  clear
+  236  ros2 launch acr_diff launch_sim.launch.py
+  237  colcon build --symlink-install
+  238  ros2 launch acr_diff launch_sim.launch
+  239  sudo apt install ros-foxy-xacro ros-foxy-gazebo-ros*
+  240  colcon build --symlink-install
+  241  clear
+  242  rqt_graph 
+  243  mkdir -p sample_Code
+  244  cd sample_Code/
+  245  git clone https://bitbucket.org/theconstructcore/morpheus_chair
+  246  git clone https://github.com/rayvburn/diff_drive_mapping_robot.git
+  247  git clone https://github.com/davidusb-geek/ros-robotics-python.git
+  248  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  249  source ~/ros2_ws/install/setup.bash 
+  250  ros2 pkg list
+  251  ros2 topic info /cmd_vel
+  252  sudo pip install simple-pid
+  253  ros2 topic echo /cmd_vel 
+  254  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  255  sudo raspi-config
+  256  colcon build --symlink-install
+  257  cd acr_diff/launch/
+  258  sudo python3 differential_Drive.py 
+  259  cd
+  260  sudo apt install ros-foxy-rclpy
+  261  ls -l /dev/gpiomem
+  262  sudo chown root.gpio /dev/gpiomem
+  263  sudo chmod g+rw /dev/gpiomem
+  264  ls -l /dev/gpiomem
+  265  sudo adduser hduser ubuntu
+  266  sudo usermod -a -G sudo hduser
+  267  sudo usermod -a -G sudo ubuntu
+  268  cd Desktop/
+  269  LS
+  270  ls
+  271  cd Differential\ Drive/
+  272  sudo python3 differential_Drive.py 
+  273  source /opt/ros/foxy/setup.bash 
+  274  sudo python3 differential_Drive.py 
+  275  ros2 topic echo /cmd_vel 
+  276  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  277  sudo usermod -a -G sudo ubuntu
+  278  sudo python3 differential_Drive.py 
+  279  python3 differential_Drive.py 
+  280  sudo adduser ubuntu gpio
+  281  sudo adduser ubuntu GPIO
+  282  cd
+  283  cd ~/Desktop/Differential\ Drive/
+  284  python3 differential_Drive.py 
+  285  sudo adduser ubuntu gpiozero
+  286  sudo source /opt/ros/foxy/setup.bash 
+  287  ls -l /dev/gpiomem
+  288  sudo adduser ubuntu gpio
+  289  sudo apt install rpi.gpio-common
+  290  python3 differential_Drive.py 
+  291  sudo adduser ubuntu dialout
+  292  sudo reboot
+  293  sudo apt install ros-foxy-rospy
+  294  python3 differential_Drive.py 
+  295  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  296  ros2 topic echo /cmd_vel 
+  297  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  298  ros2 run teleop_twist_keyboard teleop_twist_keyboard
+  299  ros2 launch acr_diff launch_sim.launch.py 
+  300  sudo apt install ros-foxy-navigation2 
+  301  sudo apt install ros-foxy-nav2-bringup 
+  302  sudo apt install ros-foxy-turtlebot3*
+  303  ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
+  304  source /opt/ros/foxy/setup.bash 
+  305  export TURTLEBOT3_MODEL=waffle
+  306  export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros
+  307  export TURTLEBOT3_MODEL=waffle
+  308  export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/foxy/share/turtlebot3_gazebo/models
+  309  ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
+  310  sudo apt install ros-foxy-nav2*
+  311  source /opt/ros/foxy/setup.bash 
+  312  export TURTLEBOT3_MODEL=waffle
+  313  export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/foxy/share/turtlebot3_gazebo/models
+  314  ros2 launch nav2_bringup tb3_simulation_launch.py headless:=False
+  315  sudo apt install ros-foxy-navigation2 ros-foxy-nav2-bringup '~ros-foxy-turtlebor3-.8'
+  316  sudo apt install ros-foxy-navigation2 ros-foxy-nav2-bringup '~ros-foxy-turtlebor3-.*'
+  317  export ROS_DOMAIN_ID=6
+  318  python3 simplesubscriber.py 
+  319  python3 differential_Drive.py 
+  320  sudo python3 differential_Drive.py
+  321  hostname -i
+  322  hostname -I
+  323  ping 192.168.10.234
+  324  ros2 run demo_nodes_py listener
+  325  export ROS_DOMAIN_ID=5
+  326  ros2 run demo_nodes_py listener
+  327  ros2 topic list
+  328  ros2 topic echo /cmd_vel 
+  329  ping 192.168.10.234
+  330  ros2 topic echo /cmd_vel 
+  331  ros2 topic list
+  332  export ROS_DOMAIN_ID=5
+  333  ros2 topic list
+  334  hostname -I
+  335  export ROS_DOMAIN_ID=5
+  336  source /opt/ros/foxy/setup.bash 
+  337  ros2 topic list
+  338  export ROS_DOMAIN_ID=6
+  339  ros2 topic list
+  340  ros2 topic echo /cmd_vel 
+  341  gazebo
+  342  ros2 launch acr_diff launch_sim.launch.py
+  343  export ROS_DOMAIN_ID=5
+  344  ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py 
+  345  export ROS_DOMAIN_ID=5
+  346  ros2 launch slam_toolbox online_async_launch.py 
+  347  ros2 launch slam_toolbox online_sync_launch.py 
+  348  export ROS_DOMAIN_ID=5
+  349  ros2 launch slam_toolbox online_sync_launch.py
+  350  ros2 node  list
+  351  ros2 node info /static_tf_pub_laser 
+  352  ros2 node info /ydlidar_ros2_driver_node 
+  353  ros2 launch slam_toolbox offline_launch.py 
+  354  export ROS_DOMAIN_ID=5
+  355  ros2 launch slam_toolbox online_async_launch.py 
+  356  ros2 launch slam_toolbox localization_launch.py 
+  357  ros2 launch slam_toolbox online_async_launch.py 
+  358  export ROS_DOMAIN_ID=5
+  359  ros2 launch ydlidar_ros2_driver ydlidar_launch.py
+  360  export ROS_DOMAIN_ID=5
+  361  ros2 launch slam_toolbox online_async_launch.py 
+  362  export ROS_DOMAIN_ID=5
+  363  ros2 launch slam_toolbox online_async_launch.py 
+  364  export ROS_DOMAIN_ID=5
+  365  export ROS_DOMAIN_ID=5
+  366  ros2 launch acr_diff launch_sim.launch.py 
+  367  export ROS_DOMAIN_ID=5
+  368  ros2 launch slam_toolbox online_async_launch.py 
+  369  export ROS_DOMAIN_ID=5
+  370  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  371  export ROS_DOMAIN_ID=5
+  372  ros2 launch slam_toolbox online_async_launch.py 
+  373  ros2 run tf2_ros static_transform_publisher 0.1 0 0.2 0 0 0 base_link laser_frame
+  374  git clone https://github.com/ros-planning/navigation2_tutorials.git
+  375  history | grep colcon
+  376  colcon build --symlink-install
+  377  cd
+  378  sudo apt install ros-foxy-nav2*
+  379  sudo apt install ros-foxy-navigation2*
+  380  ros2 launch sam_bot_description display.launch.py
+  381  source ~/ros2_ws/install/setup.bash 
+  382  ros2 launch sam_bot_description display.launch.py
+  383  source /opt/ros/foxy/setup.bash 
+  384  ros2 launch sam_bot_description display.launch.py
+  385  sudo apt install ros-foxy-robot-localization*
+  386  source /opt/ros/foxy/setup.bash 
+  387  source ~/ros2_ws/install/setup.bash 
+  388  ros2 launch sam_bot_description display.launch.py
+  389  export ROS_DOMAIN_ID=5
+  390  ros2 launch sam_bot_description display.launch.py
+  391  reset
+  392  export ROS_DOMAIN_ID=5
+  393  ros2 launch sam_bot_description display.launch.py
+  394  sudo reboot
+  395  export ROS_DOMAIN_ID=5
+  396  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  397  export ROS_DOMAIN_ID=5
+  398  ros2 launch slam_toolbox online_async_launch.py 
+  399  reset
+  400  export ROS_DOMAIN_ID=5
+  401  ros2 launch slam_toolbox online_async_launch.py 
+  402  export ROS_DOMAIN_ID=5
+  403  ros2 launch sam_bot_description display.launch.py
+  404  reset
+  405  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  406  export ROS_DOMAIN_ID=5
+  407  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  408  export ROS_DOMAIN_ID=5
+  409  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  410  reset
+  411  export ROS_DOMAIN_ID=5
+  412  ros2 run tf2_ros static_transform_publisher 0.1 0 0.02 0 0 0 1 base_link laser_frame
+  413  python3 ydlidar.py 
+  414  export ROS_DOMAIN_ID=5
+  415  export ROS_DOMAIN_ID=5
+  416  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  417  export ROS_DOMAIN_ID=5
+  418  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  419  reset
+  420  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  421  export ROS_DOMAIN_ID=5
+  422  ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
+  423  ros2 topic echo /scan
+  424  reset
+  425  ros2 topic echo /scan
+  426  ros2 topic list
+  427  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  428  ros2 topic echo /scan 
+  429  ros topic echo /scan
+  430  ros2 topic echo /scan
+  431  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 odom base_link
+  432  ros2 launch nav2_bringup slam_launch.py 
+  433  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map  base_link
+  434  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map base_link
+  435  ros2 launch sam_bot_description display.launch.py 
+  436  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map base_link
+  437  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  438  ros2 launch slam_toolbox online_async_launch.py
+  439  ros2 launch slam_toolbox online_sync_launch.py
+  440  sudo apt install ros-foxy-laser*
+  441  source /opt/ros/foxy/setup.bash 
+  442  ros2 launch slam_toolbox online_sync_launch.py
+  443  ros2 launch slam_toolbox online_sync_launch.py use_sim_time:=false
+  444  ros2 launch slam_toolbox online_sync_launch.py
+  445  ros2 launch slam_toolbox online_async_launch.py
+  446  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  447  ros2 launch slam_toolbox online_async_launch.py 
+  448  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  449  ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
+  450  reset
+  451  ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
+  452  ros2 launch slam_toolbox online_async_launch.py 
+  453  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 odom base_link
+  454  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map odom
+  455  ros2 run tf2_ros tf2_echo base_link laser_frame
+  456  ros2 topic echo /map
+  457  ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
+  458  ros2 launch slam_toolbox online_async_launch.py 
+  459  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 odom base_link
+  460  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map odom
+  461  ros2 run tf2_ros static_transform_publisher 0.1 0 0.2 0 .2 0 map odom
+  462  cd ~/ros2_ws/
+  463  cd ~/ros2_ws/src
+  464  ls
+  465  mkdir src
+  466  ls
+  467  cd src/
+  468  ros2 pkg create --build-type ament_cmake basic_mobile_Robot
+  469  ls
+  470  cd basic_mobile_Robot/
+  471  mkdir config launch maps meshes models params rviz worlds
+  472  dir
+  473  cd ~/ros2_ws/
+  474  colocon build
+  475  colcon build
+  476  colcon_cd basic_mobile_robot
+  477  echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc
+  478  colcon_cd basic_mobile_robot
+  479  echo "export _colcon_cd_root=~/ros2_ws" >> ~/.bashrc
+  480  colcon_cd basic_mobile_robot
+  481  gedit /.bashrc
+  482  ls -lrt
+  483  gedit ~/.bashrc
+  484  sudo apt install ros-foxy-nav2-
+  485  sudo apt install ros-foxy-nav2*
+  486  cd ~/ros2_ws/src/basic_mobile_Robot/
+  487  cd models
+  488  gedit basic_mobile_bot_v1.urdf
+  489  cd ..
+  490  cd meshes/
+  491  cd ..
+  492  ls
+  493  gedit package.xml 
+  494  cd launch/
+  495  gedit basic_mobile_bot_v1.launch.py
+  496  cd ..
+  497  cd rviz
+  498  gedit urdf_config.rviz
+  499  cd ..
+  500  gedit CMakeLists.txt 
+  501  cd ~/ros2_ws/
+  502  colcon build
+  503  ros2 launch basic_mobile_robot basic_mobile_bot_v1.launch.py
+  504  ros2 run teleop_twist_keyboard teleop_twist_keyboard 
+  505  rqt_graph 
+  506  ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map odom
+  507  ros2 run tf2_ros static_transform_publisher 0.1 0.2 0 0 0 0 map odom
+  508  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  509  reset
+  510  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  511  reset
+  512  ros2 launch slam_toolbox online_async_launch.py 
+  513  history | grep use_
+  514  ros2 launch slam_toolbox online_sync_launch.py use_sim_time:=false
+  515  ros2 launch robot_localization ekf.launch.py 
+  516  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 odom base_link
+  517  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 odom base_footprint
+  518  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 odom base_link
+  519  ros2 run tf2_ros static_transform_publisher 0.5 0 0 0 0 0 odom base_link
+  520  ros2 launch slam_toolbox online_sync_launch.py
+  521  ros2 launch slam_toolbox online_async_launch.py
+  522  cd ~/.bashrc
+  523  cd ~/.bash
+  524  cd ~/.ros/
+  525  cd ~/ros2_ws/
+  526  cd ./bashrc
+  527  cd
+  528  gedit ~/.bashrc
+  529  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  530  export ROS_DOMIAN_ID=5
+  531  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  532  export ROS_DOMIAN_ID=6
+  533  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  534  ros2 launch slam_toolbox online_async_launch.py
+  535  export ROS_DOMIAN_ID=5
+  536  ros2 topic list
+  537  export ROS_DOMIAN_ID=6
+  538  rviz2
+  539  export ROS_DOMIAN_ID=5
+  540  ros2 run tf2_ros static_transform_publisher 0.5 0 0 0 0 0 odom base_link
+  541  export ROS_DOMIAN_ID=5
+  542  ros2 run tf2_ros static_transform_publisher 0.5 0 0 0 0 0 odom base_link
+  543  ros2 run tf2_ros static_transform_publisher 0.1 0.2 0 0 0 0 map odom
+  544  export ROS_DOMIAN_ID=5
+  545  ros2 run tf2_ros static_transform_publisher 0.1 0.2 0 0 0 0 map odom
+  546  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 base_link  base_footprint
+  547  export ROS_DOMIAN_ID=5
+  548  ros2 run tf2_ros static_transform_publisher 0.2 0 0 0 0 0 base_link  base_footprint
+  549  colcon cd
+  550  gedit ~/.bashrc
+  551  sudo apt install ros-foxy-nav2*
+  552  git clone https://github.com/ros-planning/navigation2.git
+  553  colcon build --symlink-install
+  554  ~/ros2_ws/
+  555  cd ~/ros2_ws/
+  556  colcon build --symlink-install
+  557  reset
+  558  ros2 launch sam_bot_description display.launch.py 
+  559  pip install mpu6050-raspberrypi
+  560  from mpu6050 import mpu6050
+  561  python3
+  562  pip install smbus
+  563  reset
+  564  python3
+  565  sudo python3
+  566  sudo pip install smbus
+  567  sudo pip install mpu6050-raspberrypi
+  568  sudo python3
+  569  sudo i2cdetect -r -y 1
+  570  sudo apt install i2c-tools 
+  571  sudo i2cdetect -r -y 1
+  572  sudo nautilus
+  573  sudo python3
+  574  sudo python3 mpu6050.py 
+  575  sudo python3 simplesubscriber.py 
+  576  sudo python3 differential_Drive.py 
+  577  source /opt/ros/foxy/setup.bash 
+  578  sudo python3 differential_Drive.py 
+  579  sudo python3 test1.py 
+  580  sudo python3 encoder.py 
+  581  ls
+  582  cd ~/Desktop/Differential\ Drive/
+  583  sudo python3 mpu6050.py 
+  584  ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+  585  rviz2
+  586  sudo nautilus
+  587  cp -i Differential\ Drive/ /media/
+  588  cp -Ri Differential\ Drive/ /media/
+  589  sudo cp -Ri Differential\ Drive/ /media/
+  590  sudo cp -Ri Differential\ Drive/ /media/ubuntu/ROS/
+  591  sudo cp -Ri basic_mobile_robot/ /media/ubuntu/ROS/
+  592  sudo cp Differential\ Drive/ /media/ubuntu/UBUNTU 22_01
+  593  sudo cp -ri sample_Code/ /media/ubuntu/ROS/
+  594  sudo cp -Ri acr_diff/ /media/ubuntu/ROS/
+  595  ros2 run teleop_twist_keyboard teleop_twist_keyboard 
+  596  source ~/ros2_ws/install/setup.bash 
+  597  python3 differential_Drive.py 
+  598  from mpu6050 import mpu6050 cd /home/ubuntu/Desktop/Differential\ Drive ; /usr/bin/env /bin/python3 /home/ubuntu/.vscode-insiders/extensions/ms-python.python-2022.15.12631011/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 43867 -- /home/ubuntu/.local/lib/python3.8/site-packages/Encoder/encoder.py 
+  599  git clone https://github.com/NIRMALTH0MAS/Differential-Drive-ROS2.git
+  600  rviz2
+  601  it config --global user.name "NIRMALTH0MAS"
+  602  git config --global user.name "NIRMALTH0MAS"
+  603  git config --global user.email "nirmal304@yahoo.com"
+  604  sudo i2cdetect -r -y 1
+  605  cd Desktop/
+  606  git clone https://github.com/robofoundry/aws-deepracer-imu-pkg.git
+  607  cd imu_pkg/
+  608  sudo python3 imu_pkg/imu_node.py 
+  609  python3
+  610  sudo python3
+  611  ros2 topic list 
+  612  ros2 topic echo /imu_msg/raw 
+  613  sudo chown -R
+  614  sudo chown -R ubuntu 
+  615  sudo chown -R ubuntu ~/Desktop/aws-deepracer-imu-pkg/
+  616  sudo chmod a+rw /dev/i2c-*
+  617  sudo vscode
+  618  ros2 topic list
+  619  ros2 launch basic_mobile_robot basic_mobile_bot_v1.launch.py
+  620  history
+

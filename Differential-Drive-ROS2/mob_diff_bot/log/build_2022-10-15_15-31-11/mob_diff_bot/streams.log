@@ -1,0 +1,69 @@
+[0.082s] Invoking command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot
+[0.827s] -- The C compiler identification is GNU 9.4.0
+[1.286s] -- The CXX compiler identification is GNU 9.4.0
+[1.326s] -- Check for working C compiler: /usr/bin/cc
+[1.763s] -- Check for working C compiler: /usr/bin/cc -- works
+[1.769s] -- Detecting C compiler ABI info
+[2.105s] -- Detecting C compiler ABI info - done
+[2.140s] -- Detecting C compile features
+[2.141s] -- Detecting C compile features - done
+[2.155s] -- Check for working CXX compiler: /usr/bin/c++
+[2.520s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[2.523s] -- Detecting CXX compiler ABI info
+[2.906s] -- Detecting CXX compiler ABI info - done
+[2.941s] -- Detecting CXX compile features
+[2.942s] -- Detecting CXX compile features - done
+[2.994s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[3.203s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[3.203s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[4.141s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[4.661s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[5.313s] -- Added test 'copyright' to check source files copyright and LICENSE
+[5.367s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[5.367s] -- Configured cppcheck include dirs: 
+[5.368s] -- Configured cppcheck exclude dirs and/or files: 
+[5.431s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[5.431s] -- Configured cpplint exclude dirs and/or files: 
+[5.441s] -- Added test 'flake8' to check Python code syntax and style conventions
+[5.458s] -- Added test 'lint_cmake' to check CMake code style
+[5.470s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[5.529s] -- Added test 'uncrustify' to check C / C++ code style
+[5.529s] -- Configured uncrustify additional arguments: 
+[5.540s] -- Added test 'xmllint' to check XML markup files
+[5.558s] -- Configuring done
+[5.570s] -- Generating done
+[5.576s] -- Build files have been written to: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot
+[5.589s] Invoked command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot
+[5.600s] Invoking command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --build /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot -- -j4 -l4
+[5.790s] Invoked command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --build /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot -- -j4 -l4
+[5.962s] Invoking command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --install /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot
+[6.012s] -- Install configuration: ""
+[6.014s] -- Execute custom install script
+[6.018s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/config/empty.yaml
+[6.067s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/depth_camera.xacro
+[6.133s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/gazebo_control.xacro
+[6.180s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/inertial_macros.xacro
+[6.226s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/lidar.xacro
+[6.275s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/materials.xacro
+[6.318s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/mob_diff_bot_core.xacro
+[6.360s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/mob_diff_bot_urdf.xacro
+[6.404s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/description/mpu_6050.xacro
+[6.448s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/launch/mob_diff_bot.launch.py
+[6.498s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/launch/mod_diff_bot_sim.launch.py
+[6.542s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/launch/ydlidar.launch.py
+[6.593s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/ament_index/resource_index/package_run_dependencies/mob_diff_bot
+[6.719s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/ament_index/resource_index/parent_prefix_path/mob_diff_bot
+[6.843s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/environment/ament_prefix_path.sh
+[6.983s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/environment/ament_prefix_path.dsv
+[7.072s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/environment/path.sh
+[7.129s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/environment/path.dsv
+[7.167s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/local_setup.bash
+[7.208s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/local_setup.sh
+[7.246s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/local_setup.zsh
+[7.285s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/local_setup.dsv
+[7.326s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.dsv
+[7.364s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/ament_index/resource_index/packages/mob_diff_bot
+[7.405s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/cmake/mob_diff_botConfig.cmake
+[7.443s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/cmake/mob_diff_botConfig-version.cmake
+[7.481s] -- Symlinking: /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/install/mob_diff_bot/share/mob_diff_bot/package.xml
+[7.529s] Invoked command in '/home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/ubuntu/ros2_ws/install/nav2_simple_commander:/opt/ros/foxy /usr/bin/cmake --install /home/ubuntu/Desktop/Differential-Drive-ROS2/mob_diff_bot/build/mob_diff_bot

@@ -1,0 +1,18 @@
+https://github.com/YDLIDAR/ydlidar_ros2_driver
+https://github.com/YDLIDAR/YDLidar-SDK
+https://github.com/YDLIDAR/YDLidar-SDK/blob/master/doc/howto/how_to_build_and_install.md
+
+https://www.youtube.com/watch?v=ZRMbyPOTTpI
+
+https://github.com/wimblerobotics/ros2_roboclaw_driver
+https://github.com/AdroitAnandAI/SLAM-on-Raspberry-Pi
+
+
+https://github.com/1222-takeshi/ros2-mpu6050-driver/blob/main/launch/mpu6050_driver.launch.xml
+https://robofoundry.medium.com/using-bmi160-imu-with-ros2-ecb550851efa
+
+Robot Encoder : Robot odometry From Encoder Publisher
+	https://github.com/eden-desta/ros2_differential_drive/blob/ros2/src/differential_drive/diff_tf.py
+	
+Rviz continuous Joint issue:
+https://answers.ros.org/question/382196/urdf-joint-type-continuous-causes-rviz2-issues/
