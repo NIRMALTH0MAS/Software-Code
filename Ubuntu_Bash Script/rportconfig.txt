@@ -1,0 +1,52 @@
+#!/bin/bash
+
+###########################################################
+# Script:      SSH,TightVNC & CURL in Ubuntu 20.04        #
+# Author:      Nirmal Thomas (nirmal.thomas@qikpod.com)   #
+# Description: This script automates the setup process    #
+#              for a ssh, vnc & rport in Ubuntu 20.04 LTS #
+###########################################################
+
+# Check if openssh-server, tightvncserver and curl are installed and install them if not
+if ! dpkg -s openssh-server tightvncserver curl >/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y openssh-server tightvncserver curl
+fi
+
+# Check if LXDE is installed and install it if it's not
+if ! dpkg -s lxde-core >/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y lxde-core
+fi
+
+# Add LXDE for the tightVNC and open vnc xstartup and add /user/bin/startlxde
+echo "#!/bin/bash" >> ~/.vnc/xstartup
+echo "xrdb $HOME/.Xresources" >> ~/.vnc/xstartup
+echo "startlxde &" >> ~/.vnc/xstartup
+chmod +x ~/.vnc/xstartup
+
+# Allow ssh through firewall port 22 and vnc through port 5901/tcp
+sudo ufw allow ssh
+sudo ufw allow 5901/tcp
+
+# Check the SSH Service and VNC Server status, if ssh is not activated activate it
+if ! systemctl is-active --quiet ssh; then
+    sudo systemctl enable --now ssh
+fi
+
+# Ask user to enter rport pairing code and press enter to continue
+read -p "Enter rport pairing code and press enter to continue with rport installation: " pairing_code
+
+# Install rport using curl and execute the rport installer script with the specified options
+curl https://pairing.rport.io/$pairing_code > rport-installer.sh
+sudo sh rport-installer.sh -x -s -r -b -i
+
+# Check if VNC Server is not enabled and enable it
+if ! pgrep -x "Xtightvnc" >/dev/null; then
+    vncserver -geometry 1920x1080
+else
+    # Kill existing VNC Server and start a new one
+    vncserver -kill :1
+    vncserver -geometry 1920x1080
+fi
+
