@@ -44,6 +44,59 @@ def check_edge_violation(contour, frame_width, frame_height):
     
     return False
 
+# Function to convert image to black and white, measure dimensions of white area, and draw a rectangle
+# def measure_white_area_dimensions():
+#     # Convert frame to black and white
+#     bw_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#     _, bw_frame = cv2.threshold(bw_frame, 1, 255, cv2.THRESH_BINARY)
+    
+#     # Find contours in the black and white frame
+#     contours, _ = cv2.findContours(bw_frame, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+#     cv2.imshow('White_Area_Detection', bw_frame)
+    
+#     for contour in contours:
+#         # Calculate the dimensions of the white area
+#         object_width, object_height = measure_dimensions(contour)
+    
+#         # Display the dimensions of the white area
+#         cv2.putText(frame, f'White Area Width: {object_width:.2f} mm', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+#         cv2.putText(frame, f'White Area Height: {object_height:.2f} mm', (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+#         break  # Display dimensions of the first white area only
+
+# def measure_white_area_dimensions(frame):
+#     # Load the standard image
+#     standard_image = cv2.imread('standard_image.jpg', cv2.IMREAD_GRAYSCALE)
+
+#     # Resize the standard image to match the frame size
+#     standard_image = cv2.resize(standard_image, (frame.shape[1], frame.shape[0]))
+    
+#     # Convert frame to black and white
+#     bw_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#     _, bw_frame = cv2.threshold(bw_frame, 1, 255, cv2.THRESH_BINARY)
+    
+#     # Subtract the standard image from the frame
+#     diff = cv2.absdiff(standard_image, bw_frame)
+    
+#     # Apply thresholding to obtain binary difference image
+#     _, diff_binary = cv2.threshold(diff, 1, 255, cv2.THRESH_BINARY)
+    
+#     # Find contours in the difference image
+#     contours, _ = cv2.findContours(diff_binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+#     cv2.imshow('White_Area_Detection', diff)
+    
+#     for contour in contours:
+#         # Calculate the dimensions of the white area
+#         object_width, object_height = measure_dimensions(contour)
+    
+#         # Display the dimensions of the white area
+#         cv2.putText(diff, f'White Area Width: {object_width:.2f} mm', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+#         cv2.putText(diff, f'White Area Height: {object_height:.2f} mm', (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+        
+#         # Draw a rectangle around the variation
+#         x, y, w, h = cv2.boundingRect(contour)
+#         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+#         break  # Display dimensions of the first white area only
+
 # Initialize video capture
 cap = cv2.VideoCapture(0)  # Use the appropriate camera index if multiple cameras are connected
 
