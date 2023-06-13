@@ -76,9 +76,6 @@ while True:
     # Display the frame
     cv2.imshow('Object Detection', frame)
     
-    # Measure and display dimensions of white area
-    # measure_white_area_dimensions(frame)
-    
     # Break the loop if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
