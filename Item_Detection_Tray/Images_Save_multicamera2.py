@@ -11,6 +11,7 @@ def open_camera(camera_index):
 
     ret, frame = cap.read()
     
+    # Check if the camera is opened successfully
     if not ret:
         print(f"Failed to read from camera {camera_index}")
         cap.release()
