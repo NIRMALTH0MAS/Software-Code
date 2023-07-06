@@ -1,0 +1,48 @@
+{
+      "shuttle_id": 0,
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "home_position": {"x": 0,"y": 0,"z": 0},
+      "current_tray_id": null,
+      "modbus_connection_type": "rs485",
+      "rs485": {"device_path": "/dev/qikpod_test_plc"},
+      "tcp": {"ip_address": "192.168.200.22", "port": "8899"},
+
+        "(1, 3, 1)": {
+                    "v_steps": 500,
+                    "h_steps": 800
+          },
+          "(1, 3, 6)": {
+                    "v_steps": -1825,
+                    "h_steps": 800
+          },
+          "(1, 3, 10)": {
+                    "v_steps": -3685,
+                    "h_steps": 800
+          },
+          "(1, 3, 14)": {
+                    "v_steps": -5545,
+                    "h_steps": 800
+          },
+          "(1, 3, 21)": {
+                    "v_steps": -8800,
+                    "h_steps": 800
+          },
+          "(1, 3, 26)": {
+                    "v_steps": -11125,
+                    "h_steps": 800
+          },
+          "(1, 3, 31)": {
+                    "v_steps": -13450,
+                    "h_steps": 800
+          },
+          "(1, 3, 36)": {
+                    "v_steps": -15775,
+                    "h_steps": 800
+          },
+          "(1, 3, 41)": {
+                    "v_steps": -18100,
+                    "h_steps": 800
+          }
+}
