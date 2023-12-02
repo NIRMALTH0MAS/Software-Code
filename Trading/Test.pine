@@ -1,0 +1,223 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © chhagansinghmeena
+
+//@version=5
+indicator("AI-Bank-Nifty Tech Analysis [CSM]", shorttitle = "BankNifty & Nifty", overlay = true)
+import chhagansinghmeena/BankNifty_CSM/16 as CSM
+
+optionScript = input.string(title = "Data Analysis Display", defval = "BankNifty", options = ['BankNifty', 'Nifty', 'Current Stock'],tooltip = "When BankNifty or Nifty is selected, the current stock's result will be displayed at the bottom of the table. It will update as the selected stock changes on the chart.")
+showCandles = input.bool(title = "Smart AI Candle Detection", defval = false,tooltip = "This tool checks the candles to determine bullish or bearish trends based on CPMA (Conceptive Price Moving Average).")
+addSmoothing = input.bool(title = 'Smooth CPMA', defval = false, tooltip = 'By enabling this the CPMA smoothed and represent on chart')
+enableTblHide = input.bool(title = "Table Hide", defval = false,group='Table Position/Style')
+dash_loc = input.session("Top Right","Bank Dashboard Location"  ,options=["Top Right","Bottom Right","Top Left","Bottom Left", "Middle Right","Bottom Center"]  ,group='Table Position/Style')
+text_size = input.session('Small',"Dashboard Size"  ,options=["Tiny","Small","Normal","Large"]  ,group='Table Position/Style')
+
+cell_up = input(#4caf50,'Bullish'  ,group='Table Cell Color', inline = 'Bullish')
+cell_dn = input(#FF5252,'Bearish'  ,group='Table Cell Color', inline = 'Bullish')
+cell_netural = input(color.gray,'Neutral'  ,group='Table Cell Color', inline = 'Bullish')
+txt_col = input(color.white,'Text Color'  ,group='Table Cell Color',inline = 'Text Color' )
+frm_col = input(color.black,'Frame Color'  ,group='Table Cell Color', inline = 'Text Color')
+
+cell_transp = 10 
+
+filterNifty = optionScript == "BankNifty" ? false : true 
+enableForSpecific = optionScript == "Current Stock" ? true : false
+
+
+t1 = filterNifty ? "NSE:RELIANCE" : "NSE:HDFCBANK"
+t2 = filterNifty ? "NSE:HDFCBANK" : "NSE:ICICIBANK" 
+t3 = filterNifty ? "NSE:INFY" : "NSE:KOTAKBANK" 
+t4 = filterNifty ? "NSE:HDFC" : "NSE:AXISBANK"
+t5 = filterNifty ? "NSE:ICICIBANK"  : "NSE:SBIN"
+t6 = filterNifty ? "NSE:TCS" : "NSE:INDUSINDBK"
+t7 = filterNifty ? "NSE:KOTAKBANK" : "NSE:PNB"
+t8 = filterNifty ? "NSE:HINDUNILVR": "NSE:BANDHANBNK"
+t9 = filterNifty ? "NSE:BAJFINANCE" : "NSE:FEDERALBNK"
+t10 = filterNifty ? "NSE:SBIN" : "NSE:IDFCFIRSTB"
+t11 = syminfo.tickerid 
+
+// Add India VIX and SGX Nifty
+t12 = "NSE:INDIAVIX"
+t13 = filterNifty ? "SGX_DLY:IN1!" : "TVC:DJI"
+
+/// -------------- Table Start -------------------
+
+var table_position = dash_loc == 'Top Left' ? position.top_left :
+  dash_loc == 'Bottom Left' ? position.bottom_left :
+  dash_loc == 'Middle Right' ? position.middle_right :
+  dash_loc == 'Bottom Center' ? position.bottom_center :
+  dash_loc == 'Top Right' ? position.top_right : position.bottom_right
+  
+var table_text_size = text_size == 'Tiny' ? size.tiny :
+  text_size == 'Small' ? size.small :
+  text_size == 'Normal' ? size.normal : size.large
+
+///// -- Table Inputs
+max = 120
+min = 10
+
+var t = table.new(table_position,19,math.abs(max-min)+2,
+  bgcolor =color.rgb(86, 89, 101),
+  frame_color=frm_col,
+  frame_width=1,
+  border_color=frm_col,
+  border_width=1)
+   
+cpmaAVG = close
+get_BankComponent_Details(symbol)=>
+    
+    [lastClosePrice, lastOpenPrice] = request.security(symbol, "1D", [close[1],open[1]])
+    [openPrice,closePrice,highPrice,hl2Price,lowPrice,hlc3Price,OHLC4Price,hlcc4Price, vol] = request.security(symbol, timeframe.period, [open,close,high,hl2,low, hlc3, ohlc4,hlcc4,volume])
+    filterBy = enableForSpecific ? syminfo.tickerid : filterNifty ? "NSE:NIFTY" : "NSE:BANKNIFTY"
+    [bankNiftyClose, prevBankNiftyClose] = request.security(filterBy, "1D", [close,close[1]])
+
+    priceVal = CSM.CSM_CPMA(length = 14 ,price = closePrice,HL2 = hl2Price, Open = openPrice , High = highPrice, Low = lowPrice, OHLC4 = OHLC4Price, HLC3 = hlc3Price, HLCC4 = hlcc4Price)
+
+    csm_cpmaBuy = closePrice > priceVal 
+    csm_cpmaSell =  closePrice < priceVal
+    csm_cpmaBuy_text = csm_cpmaBuy ? 'Buy' : 'Sell'
+
+    index_change = (bankNiftyClose / prevBankNiftyClose) -1
+    stock_change = (closePrice / lastClosePrice) - 1
+    w_r_t_Result = stock_change > 0 and csm_cpmaBuy ? 'Buy' : stock_change < 0  and csm_cpmaSell ? 'Sell' : 'Neutral'
+   
+    [ts1, ts1Chng, ts1p, VWAPColor, VWAPText, trend, BuySell, ADXColor, ADXText, RSIColor, RSIText, MFIColor, MFIText, AllG_Color, AllG_Text, MACD_Color, MACDText, FARMA_Color, FARMAText, ST_Color_21, ST_Text_21, ST_Color_14, ST_Text_14, ST_Color_10, ST_Text_10, RS_Text, RS_Color] = CSM.getLtp_N_Chang(openPrice, closePrice , highPrice , hl2Price, lowPrice, hlc3Price, lastClosePrice, bankNiftyClose)
+    
+    // trendUp = VWAPText == 'Buy' and csm_cpmaBuy and MACDText == 'Buy' and FARMAText == 'Buy' ? true : false
+    // trendDwn =  VWAPText == 'Sell' and csm_cpmaSell and MACDText == 'Sell' and FARMAText == 'Sell' ? true : false
+    
+    w_r_t_Result := w_r_t_Result == 'Buy' and csm_cpmaBuy ? 'Buy' : w_r_t_Result == 'Sell' and csm_cpmaSell ? 'Sell' : 'Neutral'
+
+    [w_r_t_Result,ts1, ts1Chng, vol, VWAPColor, VWAPText, csm_cpmaBuy, csm_cpmaBuy_text, ADXColor, ADXText, RSIColor, RSIText, MFIColor, MFIText, AllG_Color, AllG_Text, MACD_Color, MACDText, FARMA_Color, FARMAText, ST_Color_21, ST_Text_21, ST_Color_14, ST_Text_14, ST_Color_10, ST_Text_10, RS_Text, RS_Color, priceVal]
+
+
+
+//Confirmation From RSI, MFI, FRAMA, MACD and VWAP
+[w_r_t_Result, ltp, ltpCng, ltpPercChng, srcpVwap, srcpVWAPText, srcpCPMA, srcpCPMAtext, srcpADXColor, srcpADXText, srcpRSIColor, srcpRSIText, srcpMFIColor, srcpMFIText, srcpAllG_Color, srcpAllG_Text, srcpMACD_Color, srcpMACDText, srcpFARMA_Color, srcpFARMAText, srcpST_Color_21, srcpST_Text_21, srcpST_Color_14, srcpST_Text_14, srcpST_Color_10, srcpST_Text_10, srcpRS_Text, srcpRS_Color, CPMA1]   = get_BankComponent_Details(syminfo.tickerid)
+
+trendUp = srcpVWAPText == 'Buy' and srcpCPMAtext == 'Buy' and srcpMACDText == 'Buy' and srcpFARMAText == 'Buy' ? true : false
+trendDwn =  srcpVWAPText == 'Sell' and srcpCPMAtext == 'Sell' and srcpMACDText == 'Sell' and srcpFARMAText == 'Sell' ? true : false
+
+CPMA_TrendUP = close > CPMA1
+CPMA_TrendDwn = close < CPMA1
+
+bullishCandle = CSM.candlepatternbullish() and CPMA_TrendUP[1] 
+bearishCandle =  CSM.candlepatternbearish() and CPMA_TrendDwn[1]
+
+
+Signal = 0
+Signal := bullishCandle  ? 1 : bearishCandle  ? -1 : nz(Signal[1])
+isDifferentSignalType = ta.change(Signal)
+
+//plot on chart
+plotshape(showCandles and bullishCandle and isDifferentSignalType , title="Bullish Candle", location=location.belowbar, style=shape.labelup, size=size.tiny, color=color.new(color.green, 0), textcolor=color.new(color.white, 0),text = "AI Bullish")
+plotshape(showCandles and bearishCandle and isDifferentSignalType , title="Bearish Candle", location=location.abovebar, style=shape.labeldown, size=size.tiny, color=color.new(color.red, 0), textcolor=color.new(color.white, 0), text="AI Bearish")
+
+CPMAcolor = close > CPMA1 ? color.green : close < CPMA1 ? color.red : color.white
+//Thanks Lux Algo For radient approach
+//Smoothing Idea took from LUX ALGO 'AM&MA'
+[src_Sum, colorCPMA] = CSM.getGradientColor(isFirstbar = barstate.isfirst, src = CPMA1, length = 14, isSmoothed = addSmoothing)
+//plot(CPMA1, color=CPMAcolor, linewidth=2, title="CPMA")
+plot(src_Sum, color=colorCPMA, linewidth=2, title="CPMA")
+
+// Get Bank Nifty data
+//----------------HDFC
+[w_r_t_Result1, ts1, ts1Chng, ts1p, VWAPColor, VWAPText, trend, BuySell, ADXColor, ADXText, RSIColor, RSIText, MFIColor, MFIText, AllG_Color, AllG_Text, MACD_Color, MACDText, FARMA_Color, FARMAText, ST_Color_21, ST_Text_21, ST_Color_14, ST_Text_14, ST_Color_10, ST_Text_10, RS_Text, RS_Color,CPMA]   = get_BankComponent_Details(t1)
+
+//----------------ICIC
+[w_r_t_Result2, ts2, ts2Chng, ts2p, VWAPColor2, VWAPText2,trend2, BuySell2, ADXColor2, ADXText2, RSIColor2, RSIText2, MFIColor2, MFIText2, AllG_Color2, AllG_Text2, MACD_Color2, MACDText2, FARMA_Color2, FARMAText2, ST_Color_212, ST_Text_212, ST_Color_142, ST_Text_142, ST_Color_102, ST_Text_102, RS_Text2, RS_Color2,CPMA2] = get_BankComponent_Details(t2)
+
+//----------------KOTAK
+[w_r_t_Result3, ts3, ts3Chng, ts3p, VWAPColor3, VWAPText3, trend3, BuySell3, ADXColor3, ADXText3, RSIColor3, RSIText3, MFIColor3, MFIText3, AllG_Color3, AllG_Text3, MACD_Color3, MACDText3, FARMA_Color3, FARMAText3, ST_Color_213, ST_Text_213, ST_Color_143, ST_Text_143, ST_Color_103, ST_Text_103, RS_Text3, RS_Color3, CPMA3] = get_BankComponent_Details(t3)
+
+//----------------SBIN
+[w_r_t_Result4, ts4, ts4Chng, ts4p, VWAPColor4, VWAPText4, trend4, BuySell4, ADXColor4, ADXText4, RSIColor4, RSIText4, MFIColor4, MFIText4, AllG_Color4, AllG_Text4, MACD_Color4, MACDText4, FARMA_Color4, FARMAText4, ST_Color_214, ST_Text_214, ST_Color_144, ST_Text_144, ST_Color_104, ST_Text_104, RS_Text4, RS_Color4, CPMA4] = get_BankComponent_Details(t4)
+
+//----------------AXIS
+[w_r_t_Result5, ts5, ts5Chng, ts5p, VWAPColor5, VWAPText5, trend5, BuySell5, ADXColor5, ADXText5, RSIColor5, RSIText5, MFIColor5, MFIText5, AllG_Color5, AllG_Text5, MACD_Color5, MACDText5, FARMA_Color5, FARMAText5,ST_Color_215, ST_Text_215, ST_Color_145, ST_Text_145, ST_Color_105, ST_Text_105, RS_Text5, RS_Color5, CPMA5] = get_BankComponent_Details(t5)
+
+//----------------BANKNIFTY
+[w_r_t_Result6, ts6, ts6Chng, ts6p, VWAPColor6, VWAPText6, trend6, BuySell6, ADXColor6, ADXText6, RSIColor6, RSIText6, MFIColor6, MFIText6, AllG_Color6, AllG_Text6, MACD_Color6, MACDText6, FARMA_Color6, FARMAText6, ST_Color_216, ST_Text_216, ST_Color_146, ST_Text_146, ST_Color_106, ST_Text_106, RS_Text6, RS_Color6, CPMA6]  = get_BankComponent_Details(t6)
+
+//----------------HDFC
+[w_r_t_Result7, ts7, ts7Chng, ts7p, VWAPColor7, VWAPText7, trend7, BuySell7, ADXColor7, ADXText7, RSIColor7, RSIText7, MFIColor7, MFIText7, AllG_Color7, AllG_Text7, MACD_Color7, MACDText7, FARMA_Color7, FARMAText7,ST_Color_217, ST_Text_217, ST_Color_147, ST_Text_147, ST_Color_107, ST_Text_107, RS_Text7, RS_Color7, CPMA7] = get_BankComponent_Details(t7)
+
+//----------------RELIANCE
+[w_r_t_Result8, ts8, ts8Chng, ts8p, VWAPColor8, VWAPText8, trend8, BuySell8, ADXColor8, ADXText8, RSIColor8, RSIText8, MFIColor8, MFIText8, AllG_Color8, AllG_Text8, MACD_Color8, MACDText8, FARMA_Color8, FARMAText8, ST_Color_218, ST_Text_218, ST_Color_148, ST_Text_148, ST_Color_108, ST_Text_108, RS_Text8, RS_Color8, CPMA8] = get_BankComponent_Details(t8)
+
+//----------------TCS
+[w_r_t_Result9, ts9, ts9Chng, ts9p, VWAPColor9, VWAPText9, trend9, BuySell9, ADXColor9, ADXText9, RSIColor9, RSIText9, MFIColor9, MFIText9, AllG_Color9, AllG_Text9, MACD_Color9, MACDText9, FARMA_Color9, FARMAText9, ST_Color_219, ST_Text_219, ST_Color_149, ST_Text_149, ST_Color_109, ST_Text_109, RS_Text9, RS_Color9, CPMA9] = get_BankComponent_Details(t9)
+
+//----------------INFY
+[w_r_t_Result10, ts10, ts10Chng, ts10p, VWAPColor10, VWAPText10, trend10, BuySell10, ADXColor10, ADXText10, RSIColor10, RSIText10, MFIColor10, MFIText10, AllG_Color10, AllG_Text10, MACD_Color10, MACDText10, FARMA_Color10, FARMAText10, ST_Color_2110, ST_Text_2110, ST_Color_1410, ST_Text_1410, ST_Color_1010, ST_Text_1010, RS_Text10, RS_Color10, CPMA10] = get_BankComponent_Details(t10)
+
+//----------------Fedral
+[w_r_t_Result11, ts11, ts11Chng, ts11p, VWAPColor11, VWAPText11, trend11, BuySell11, ADXColor11, ADXText11, RSIColor11, RSIText11, MFIColor11, MFIText11, AllG_Color11, AllG_Text11, MACD_Color11, MACDText11, FARMA_Color11, FARMAText11, ST_Color_2111, ST_Text_2111, ST_Color_1411, ST_Text_1411, ST_Color_1011, ST_Text_1011, RS_Text11, RS_Color11, CPMA11] = get_BankComponent_Details(t11)
+
+//----------------India VIX
+[w_r_t_Result12, ts12, ts12Chng, ts12p, VWAPColor12, VWAPText12, trend12, BuySell12, ADXColor12, ADXText12, RSIColor12, RSIText12, MFIColor12, MFIText12, AllG_Color12, AllG_Text12, MACD_Color12, MACDText12, FARMA_Color12, FARMAText12, ST_Color_2112, ST_Text_2112, ST_Color_1412, ST_Text_1412, ST_Color_1212, ST_Text_1212, RS_Text12, RS_Color12, CPMA12] = get_BankComponent_Details(t12)
+
+//----------------DOW
+[w_r_t_Result13, ts13, ts13Chng, ts13p, VWAPColor13, VWAPText13, trend13, BuySell13, ADXColor13, ADXText13, RSIColor13, RSIText13, MFIColor13, MFIText13, AllG_Color13, AllG_Text13, MACD_Color13, MACDText13, FARMA_Color13, FARMAText13, ST_Color_2113, ST_Text_2113, ST_Color_1413, ST_Text_1413, ST_Color_1313, ST_Text_1313, RS_Text13, RS_Color13, CPMA13] = get_BankComponent_Details(t13)
+
+
+funcUpdateTableCells(forRow,w_r_t_Result, scrpName, ts1, ts1Chng, ts1p, VWAPColor, VWAPText, trend, BuySell, ADXColor, ADXText, RSIColor, RSIText, MFIColor, MFIText, AllG_Color, AllG_Text, MACD_Color, MACDText, FARMA_Color, FARMAText, ST_Color_21, ST_Text_21, ST_Color_14, ST_Text_14, ST_Color_10, ST_Text_10, RS_Text, RS_Color)=>
+    table.cell(t,1,forRow,str.tostring(w_r_t_Result),text_color=txt_col,text_size=table_text_size, bgcolor=color.new( w_r_t_Result == 'Buy' ? cell_up : w_r_t_Result == 'Sell' ? cell_dn : cell_netural,cell_transp))
+    table.cell(t,2,forRow, str.replace_all(scrpName, 'NSE:', ''),text_color= forRow == 1 or forRow ==2 ? #d3a9fe : forRow == 13 ? #bed510 : #4caf50,text_size=table_text_size,bgcolor=color.black)
+    table.cell(t,3,forRow, str.tostring(ts1) ,text_color=color.new(ts1p >= 0 ? cell_up : cell_dn ,cell_transp),text_size=table_text_size, bgcolor=color.black)
+    table.cell(t,4,forRow, str.tostring(ts1Chng, '#.##'),text_color=color.new(ts1Chng >= 0 ? cell_up : cell_dn ,cell_transp),text_size=table_text_size, bgcolor=color.black)
+    table.cell(t,5,forRow, forRow == 1 or forRow ==2 ? ' - ' : str.tostring(ts1p),text_color = forRow == 1 or forRow ==2 ? color.white : color.new(ts1p >= 0 ? txt_col : cell_netural, cell_transp),text_size=table_text_size, bgcolor= forRow == 1 or forRow ==2 ? cell_netural : color.new(ts1Chng >= 0 ? cell_up : cell_dn ,cell_transp) )
+    table.cell(t,6,forRow,str.tostring(AllG_Text),text_color=txt_col,text_size=table_text_size, bgcolor= AllG_Color)
+    table.cell(t,7,forRow,str.tostring(VWAPText),text_color=txt_col,text_size=table_text_size, bgcolor= VWAPColor)
+    table.cell(t,8,forRow,str.tostring(BuySell),text_color=txt_col,text_size=table_text_size, bgcolor=color.new( trend ? cell_up : cell_dn ,cell_transp))
+    table.cell(t,9,forRow,str.tostring(ADXText),text_color=txt_col,text_size=table_text_size, bgcolor= ADXColor)
+    table.cell(t,10,forRow,str.tostring(RSIText),text_color=txt_col,text_size=table_text_size, bgcolor= RSIColor)
+    table.cell(t,11,forRow,str.tostring(MFIText),text_color=txt_col,text_size=table_text_size, bgcolor= MFIColor)
+    table.cell(t,12,forRow,str.tostring(MACDText),text_color=txt_col,text_size=table_text_size, bgcolor= MACD_Color)
+    table.cell(t,13,forRow,str.tostring(FARMAText),text_color=txt_col,text_size=table_text_size, bgcolor= FARMA_Color)
+    table.cell(t,14,forRow,str.tostring(ST_Text_21),text_color=txt_col,text_size=table_text_size, bgcolor= ST_Color_21)
+    table.cell(t,15,forRow,str.tostring(ST_Text_14),text_color=txt_col,text_size=table_text_size, bgcolor= ST_Color_14)
+    table.cell(t,16,forRow,str.tostring(ST_Text_10),text_color=txt_col,text_size=table_text_size, bgcolor= ST_Color_10)
+   // table.cell(t,17,forRow,str.tostring(RS_Text),text_color=txt_col,text_size=table_text_size, bgcolor= RS_Color)
+
+    Update = true
+
+maxStockCount =  enableForSpecific ? 1 : 13
+//========== Table Logic Start
+if (barstate.islast and not enableTblHide) 
+    table.cell(t,1,0,'RWR:'+timeframe.period,text_color=txt_col,text_size=table_text_size) 
+    table.cell(t,2,0,'Symbol',text_color=txt_col,text_size=table_text_size)  
+    table.cell(t,3,0,'LTP',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,4,0,'Chng',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,5,0,'Vol',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,6,0,'Alligator',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,7,0,'VWAP',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,8,0,'CPMA',text_color=#c89cef,text_size=table_text_size)
+    table.cell(t,9,0,'ADX',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,10,0,'RSI 30/70',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,11,0,'MFI 20/80',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,12,0,'MACD',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,13,0,'FARMA',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,14,0,'ST 21-1',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,15,0,'ST 14-2',text_color=txt_col,text_size=table_text_size)
+    table.cell(t,16,0,'ST 10-3',text_color=txt_col,text_size=table_text_size)
+   // table.cell(t,17,0,'RS',text_color=txt_col,text_size=table_text_size)
+
+    for i = 1 to maxStockCount by 1
+        if maxStockCount == 1 and enableForSpecific
+            funcUpdateTableCells(i,w_r_t_Result11, t11,ts11, ts11Chng, ts11p, VWAPColor11, VWAPText11, trend11, BuySell11, ADXColor11, ADXText11, RSIColor11, RSIText11, MFIColor11, MFIText11, AllG_Color11, AllG_Text11, MACD_Color11, MACDText11, FARMA_Color11, FARMAText11, ST_Color_2111, ST_Text_2111, ST_Color_1411, ST_Text_1411, ST_Color_1011, ST_Text_1011, RS_Text11, RS_Color11)
+        else
+            switch
+                i == 1 => funcUpdateTableCells(i,w_r_t_Result12,  'INDIAVIX', ts12, ts12Chng, ts12p, VWAPColor12, VWAPText12, trend12, BuySell12, ADXColor12, ADXText12, RSIColor12, RSIText12, MFIColor12, MFIText12, AllG_Color12, AllG_Text12, MACD_Color12, MACDText12, FARMA_Color12, FARMAText12, ST_Color_2112, ST_Text_2112, ST_Color_1412, ST_Text_1412, ST_Color_1212, ST_Text_1212, RS_Text12, RS_Color12)
+                i == 2 => funcUpdateTableCells(i,w_r_t_Result13, filterNifty ? 'SGX Nifty' : 'DJIA Futures', ts13, ts13Chng, ts13p, VWAPColor13, VWAPText13, trend13, BuySell13, ADXColor13, ADXText13, RSIColor13, RSIText13, MFIColor13, MFIText13, AllG_Color13, AllG_Text13, MACD_Color13, MACDText13, FARMA_Color13, FARMAText13, ST_Color_2113, ST_Text_2113, ST_Color_1413, ST_Text_1413, ST_Color_1313, ST_Text_1313, RS_Text13, RS_Color13)
+                i == 3 => funcUpdateTableCells(i,w_r_t_Result1,   t1,   ts1, ts1Chng, ts1p, VWAPColor, VWAPText, trend, BuySell, ADXColor, ADXText, RSIColor, RSIText, MFIColor, MFIText, AllG_Color, AllG_Text, MACD_Color, MACDText, FARMA_Color, FARMAText, ST_Color_21, ST_Text_21, ST_Color_14, ST_Text_14, ST_Color_10, ST_Text_10, RS_Text, RS_Color)
+                i == 4 => funcUpdateTableCells(i,w_r_t_Result2,   t2,   ts2, ts2Chng, ts2p, VWAPColor2, VWAPText2,trend2, BuySell2, ADXColor2, ADXText2, RSIColor2, RSIText2, MFIColor2, MFIText2, AllG_Color2, AllG_Text2, MACD_Color2, MACDText2, FARMA_Color2, FARMAText2, ST_Color_212, ST_Text_212, ST_Color_142, ST_Text_142, ST_Color_102, ST_Text_102, RS_Text2, RS_Color2)
+                i == 5 => funcUpdateTableCells(i,w_r_t_Result3,   t3,   ts3, ts3Chng, ts3p, VWAPColor3, VWAPText3, trend3, BuySell3, ADXColor3, ADXText3, RSIColor3, RSIText3, MFIColor3, MFIText3, AllG_Color3, AllG_Text3, MACD_Color3, MACDText3, FARMA_Color3, FARMAText3, ST_Color_213, ST_Text_213, ST_Color_143, ST_Text_143, ST_Color_103, ST_Text_103, RS_Text3, RS_Color3)
+                i == 6 => funcUpdateTableCells(i,w_r_t_Result4,   t4,   ts4, ts4Chng, ts4p, VWAPColor4, VWAPText4, trend4, BuySell4, ADXColor4, ADXText4, RSIColor4, RSIText4, MFIColor4, MFIText4, AllG_Color4, AllG_Text4, MACD_Color4, MACDText4, FARMA_Color4, FARMAText4, ST_Color_214, ST_Text_214, ST_Color_144, ST_Text_144, ST_Color_104, ST_Text_104, RS_Text4, RS_Color4)
+                i == 7 => funcUpdateTableCells(i,w_r_t_Result5,   t5,   ts5, ts5Chng, ts5p, VWAPColor5, VWAPText5, trend5, BuySell5, ADXColor5, ADXText5, RSIColor5, RSIText5, MFIColor5, MFIText5, AllG_Color5, AllG_Text5, MACD_Color5, MACDText5, FARMA_Color5, FARMAText5,ST_Color_215, ST_Text_215, ST_Color_145, ST_Text_145, ST_Color_105, ST_Text_105, RS_Text5, RS_Color5)
+                i == 8 => funcUpdateTableCells(i,w_r_t_Result6,   t6,   ts6, ts6Chng, ts6p, VWAPColor6, VWAPText6, trend6, BuySell6, ADXColor6, ADXText6, RSIColor6, RSIText6, MFIColor6, MFIText6, AllG_Color6, AllG_Text6, MACD_Color6, MACDText6, FARMA_Color6, FARMAText6, ST_Color_216, ST_Text_216, ST_Color_146, ST_Text_146, ST_Color_106, ST_Text_106, RS_Text6, RS_Color6)
+                i == 9 => funcUpdateTableCells(i,w_r_t_Result7,   t7,   ts7, ts7Chng, ts7p, VWAPColor7, VWAPText7, trend7, BuySell7, ADXColor7, ADXText7, RSIColor7, RSIText7, MFIColor7, MFIText7, AllG_Color7, AllG_Text7, MACD_Color7, MACDText7, FARMA_Color7, FARMAText7,ST_Color_217, ST_Text_217, ST_Color_147, ST_Text_147, ST_Color_107, ST_Text_107, RS_Text7, RS_Color7)
+                i == 10 => funcUpdateTableCells(i,w_r_t_Result8,  t8,   ts8, ts8Chng, ts8p, VWAPColor8, VWAPText8, trend8, BuySell8, ADXColor8, ADXText8, RSIColor8, RSIText8, MFIColor8, MFIText8, AllG_Color8, AllG_Text8, MACD_Color8, MACDText8, FARMA_Color8, FARMAText8, ST_Color_218, ST_Text_218, ST_Color_148, ST_Text_148, ST_Color_108, ST_Text_108, RS_Text8, RS_Color8)
+                i == 11 => funcUpdateTableCells(i,w_r_t_Result9,  t9,   ts9, ts9Chng, ts9p, VWAPColor9, VWAPText9, trend9, BuySell9, ADXColor9, ADXText9, RSIColor9, RSIText9, MFIColor9, MFIText9, AllG_Color9, AllG_Text9, MACD_Color9, MACDText9, FARMA_Color9, FARMAText9, ST_Color_219, ST_Text_219, ST_Color_149, ST_Text_149, ST_Color_109, ST_Text_109, RS_Text9, RS_Color9)
+                i == 12 => funcUpdateTableCells(i,w_r_t_Result10, t10,  ts10, ts10Chng, ts10p, VWAPColor10, VWAPText10, trend10, BuySell10, ADXColor10, ADXText10, RSIColor10, RSIText10, MFIColor10, MFIText10, AllG_Color10, AllG_Text10, MACD_Color10, MACDText10, FARMA_Color10, FARMAText10, ST_Color_2110, ST_Text_2110, ST_Color_1410, ST_Text_1410, ST_Color_1010, ST_Text_1010, RS_Text10, RS_Color10)
+                i == 13 => funcUpdateTableCells(i,w_r_t_Result11,  t11,  ts11, ts11Chng, ts11p, VWAPColor11, VWAPText11, trend11, BuySell11, ADXColor11, ADXText11, RSIColor11, RSIText11, MFIColor11, MFIText11, AllG_Color11, AllG_Text11, MACD_Color11, MACDText11, FARMA_Color11, FARMAText11, ST_Color_2111, ST_Text_2111, ST_Color_1411, ST_Text_1411, ST_Color_1011, ST_Text_1011, RS_Text11, RS_Color11)

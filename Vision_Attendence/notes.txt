@@ -1,0 +1,2 @@
+1. https://anaconda.org/conda-forge/face_recognition
+2. https://www.youtube.com/watch?v=uwJltCOrpEI
