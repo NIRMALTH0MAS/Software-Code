@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartesian Picker 3D Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Sidebar - Component Tree -->
+        <div class="left-sidebar" id="leftSidebar">
+            <div class="sidebar-header">
+                <h2>Component Tree</h2>
+                <button class="close-btn" id="closeLeftSidebar" title="Close sidebar">
+                    <span>✕</span>
+                </button>
+            </div>
+
+            <div class="file-loader-section">
+                <label for="stlFileInput" class="file-upload-btn">
+                    📁 Load STL File
+                </label>
+                <input type="file" id="stlFileInput" accept=".stl,.glb,.gltf" style="display: none;">
+                <div class="current-file" id="currentFileName">Load a GLB or STL file</div>
+            </div>
+
+            <div class="component-tree" id="componentTree">
+                <div class="info-note">Load a GLB model to view hierarchy</div>
+            </div>
+        </div>
+
+        <!-- Toggle button for left sidebar -->
+        <button class="sidebar-toggle left-toggle" id="toggleLeftSidebar" title="Show component tree">
+            ☰
+        </button>
+
+        <!-- 3D Canvas -->
+        <div class="canvas-container">
+            <canvas id="canvas3d"></canvas>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading 3D Model...</p>
+            </div>
+        </div>
+
+        <!-- Toggle button for right sidebar -->
+        <button class="sidebar-toggle right-toggle" id="toggleRightSidebar" title="Show controls">
+            ⚙
+        </button>
+
+        <!-- Control Panel -->
+        <div class="control-panel" id="rightSidebar">
+            <div class="panel-header">
+                <h1>Controls</h1>
+                <button class="close-btn" id="closeRightSidebar" title="Close sidebar">
+                    <span>✕</span>
+                </button>
+            </div>
+
+            <div class="status-section">
+                <div class="status-badge" id="wsStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Disconnected</span>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="control-group">
+                    <label for="xSlider">
+                        <span class="axis-label x-axis">X-Axis</span>
+                        <span class="value-display" id="xValue">0.00</span>
+                    </label>
+                    <div class="input-row">
+                        <input type="number" id="xInput" class="value-input" value="50" step="0.1" min="0" max="100">
+                        <input type="range" id="xSlider" class="slider x-slider" min="0" max="100" value="50" step="1">
+                    </div>
+                    <div class="slider-labels">
+                        <input type="number" id="xMin" class="limit-input" value="-3.1" title="Min">
+                        <span>-1.8</span>
+                        <input type="number" id="xMax" class="limit-input" value="-0.5" title="Max">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="ySlider">
+                        <span class="axis-label y-axis">Y-Axis</span>
+                        <span class="value-display" id="yValue">0.00</span>
+                    </label>
+                    <div class="input-row">
+                        <input type="number" id="yInput" class="value-input" value="50" step="0.1" min="0" max="100">
+                        <input type="range" id="ySlider" class="slider y-slider" min="0" max="100" value="50" step="1">
+                    </div>
+                    <div class="slider-labels">
+                        <input type="number" id="yMin" class="limit-input" value="-8.9" title="Min">
+                        <span>-4.45</span>
+                        <input type="number" id="yMax" class="limit-input" value="0" title="Max">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="zSlider">
+                        <span class="axis-label z-axis">Z-Axis</span>
+                        <span class="value-display" id="zValue">0.00</span>
+                    </label>
+                    <div class="input-row">
+                        <input type="number" id="zInput" class="value-input" value="50" step="0.1" min="0" max="100">
+                        <input type="range" id="zSlider" class="slider z-slider" min="0" max="100" value="50" step="1">
+                    </div>
+                    <div class="slider-labels">
+                        <input type="number" id="zMin" class="limit-input" value="-2.4" title="Min">
+                        <span>-1.3</span>
+                        <input type="number" id="zMax" class="limit-input" value="-1.3" title="Max">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Removed Base Lock and Axis Correction sections per user request -->
+
+
+            <div class="info-section">
+                <h3>Controls</h3>
+                <ul>
+                    <li><strong>Mouse Left:</strong> Rotate view</li>
+                    <li><strong>Mouse Right:</strong> Pan view</li>
+                    <li><strong>Mouse Wheel:</strong> Zoom</li>
+                    <li><strong>Sliders:</strong> Move components</li>
+                </ul>
+                <div class="info-note">
+                    <strong>Note:</strong> All movements transition smoothly over 5 seconds
+                </div>
+            </div>
+
+            <div class="python-section">
+                <h3>Python Integration</h3>
+                <p>Send position data via WebSocket:</p>
+                <code>{ x: value, y: value, z: value }</code>
+                <p class="port-info">Port: <strong>8765</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="glb-loader.js"></script>
+    <script src="ui-manager.js"></script>
+    <script src="animator.js"></script>
+    <script src="websocket-client.js"></script>
+    <script src="controls.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
